@@ -4,16 +4,16 @@ async function handler(req, res) {
   if (req.method === "POST") {
     const data = req.body;
     const client = await MongoClient.connect(
-      "mongodb+srv://pramudithaniroshan:KxiNT3NUmxYOobul@cluster0.3unumaa.mongodb.net/meetups?retryWrites=true&w=majority"
-    );
+        'mongodb+srv://pramudithaniroshan:YTP5ciECDbHmvWUe@cluster0.3unumaa.mongodb.net/meetups?retryWrites=true&w=majority'
+      );     
     const db = client.db();
-    const meetupsCollection = db.llection("meetups");
+    const meetupsCollection = db.collection("meetups");
     const result = await meetupsCollection.insertOne({
       data,
     });
     console.log(result);
     client.close();
-    res.status(200);
+    res.status(200).json({message: 'Meetup inserted successfully!'});
   }
 }
 
